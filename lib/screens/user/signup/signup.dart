@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:nepal_red_drop/config/router.dart';
 import 'package:nepal_red_drop/screens/user/login/login.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -67,6 +66,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          'Create your account',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.poppins(
+            fontSize: 16,
           ),
         ),
       ],
@@ -344,8 +350,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         TextButton(
           onPressed: () {
-            // navigate using material page route
-            Navigator.pushNamed(context, AppRoute.logInRoute);
+            // navigate using fade through animation to login screen.
+            Navigator.of(context).push(PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    const LoginScreen(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+                transitionDuration: const Duration(milliseconds: 500)));
           },
           child: Text(
             'Login',
