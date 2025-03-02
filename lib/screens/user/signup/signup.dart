@@ -361,7 +361,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: child,
                   );
                 },
-                transitionDuration: const Duration(milliseconds: 500)));
+                transitionDuration: const Duration(milliseconds: 200)));
           },
           child: Text(
             'Login',

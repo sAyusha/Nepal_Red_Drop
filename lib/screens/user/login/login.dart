@@ -214,9 +214,18 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         TextButton(
           onPressed: () {
-            // navigate using material page route
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const SignUpScreen()));
+            // navigate using animation to login screen
+            Navigator.of(context).push(PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  const SignUpScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+              transitionDuration: const Duration(milliseconds: 200),
+            ));
           },
           child: Text(
             'Sign Up',
