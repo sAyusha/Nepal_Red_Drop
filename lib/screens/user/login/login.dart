@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nepal_red_drop/screens/user/navigation/bottom_nav.dart';
 import 'package:nepal_red_drop/screens/user/signup/signup.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -160,7 +161,21 @@ class _LoginScreenState extends State<LoginScreen> {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              // Navigator.pushNamed(context, '/home');
+              // if (_loginKey.currentState!.validate()) {
+              //   // Navigator.pushNamed(context, '/home');
+              // }
+              // navigate using animation to home screen
+              Navigator.of(context).push(PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    const BottomNavScreen(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) =>
+                        FadeTransition(
+                  opacity: animation,
+                  child: child,
+                ),
+                transitionDuration: const Duration(milliseconds: 200),
+              ));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red,
